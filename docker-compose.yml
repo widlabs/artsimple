@@ -1,25 +1,9 @@
 version: '3.3'
 services:
-  nginx:
-    container_name: nginx
-    image: nginx:stable
+  web:
+    build: .
     privileged: true
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
-      - "$PWD/docker/config/nginx/conf.d:/etc/nginx/conf.d"
-      - "$PWD:/app"
-    networks:
-      - widlabs
-  php-fpm:
-    container_name: php-fpm
-    privileged: true
-    image: php:fpm
-    ports:
-      - "9000:9000"
-    volumes:
-      - "$PWD:/app"
-    networks:
-      - widlabs
-networks:
-  widlabs:
+      - ".:/app"
